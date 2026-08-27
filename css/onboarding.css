@@ -1,0 +1,281 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800;900&display=swap');
+
+/* GLOBAL STYLES */
+
+body{
+    background:#ffffff;
+    font-family:'Nunito',sans-serif;
+}
+
+.container{
+    padding-bottom:50px;
+}
+
+
+/* HERO IMAGE / DUOLINGO CHARACTER */
+
+.duo-img{
+    width:120px;
+    margin-bottom:20px;
+}
+
+
+/* PAGE HEADINGS */
+
+.main-title{
+    font-weight:800;
+    margin-bottom:10px;
+}
+
+.subtitle{
+    color:#777;
+    margin-bottom:30px;
+}
+
+
+/* PROGRESS BAR */
+
+.progress{
+    height:15px;
+    border-radius:20px;
+}
+
+
+/*  CONTINUE BUTTON*/
+
+.continue-btn{
+    height:55px;
+    border:none;
+    font-weight:700;
+    border-radius:15px;
+    background:#58CC02;
+}
+
+
+/* GOAL PAGE CARDS */
+
+.goal-card{
+    background:#fff;
+    border:2px solid #e5e5e5;
+    border-radius:18px;
+    padding:18px;
+    margin-bottom:15px;
+    cursor:pointer;
+    transition:.3s;
+}
+.owl{
+width:130px;
+animation:bounce 1s infinite;
+}
+.goal-card:hover{
+    border-color:#58CC02;
+    transform:translateY(-2px);
+}
+
+.goal-card.active{
+    border-color:#58CC02;
+    background:#f4fff1;
+}
+
+
+/* REASON PAGE CARDS */
+
+.reason-card{
+    background:#fff;
+    border:2px solid #e5e5e5;
+    border-radius:16px;
+    padding:16px 20px;
+    margin-bottom:12px;
+
+    display:flex;
+    align-items:center;
+    gap:12px;
+
+    font-size:18px;
+    font-weight:600;
+    cursor:pointer;
+
+    transition:all .3s ease;
+}
+
+.reason-card:hover{
+    border-color:#58CC02;
+    transform:translateY(-2px);
+}
+
+.reason-card.active{
+    border-color:#58CC02;
+    background:#f4fff0;
+}
+
+
+/* REASON PAGE ICONS */
+
+.reason-icon{
+    font-size:24px;
+    color:#58CC02;
+    min-width:30px;
+    text-align:center;
+}
+
+
+/* EXPERIENCE PAGE HERO ICON */
+
+.experience-hero-icon{
+    width:120px;
+    height:120px;
+    margin:0 auto 20px;
+
+    background:#E9F7D8;
+    border-radius:50%;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+.experience-hero-icon i{
+    font-size:65px;
+    color:#58CC02;
+}
+
+
+/*EXPERIENCE PAGE CARDS*/
+
+.experience-card{
+    background:#fff;
+    border:2px solid #e5e5e5;
+    border-radius:16px;
+    padding:16px 20px;
+    margin-bottom:12px;
+
+    display:flex;
+    align-items:center;
+    gap:14px;
+
+    font-size:18px;
+    font-weight:600;
+    cursor:pointer;
+
+    transition:all .3s ease;
+}
+
+.experience-card:hover{
+    border-color:#58CC02;
+    transform:translateY(-2px);
+}
+
+.experience-card.active{
+    border-color:#58CC02;
+    background:#f4fff0;
+}
+
+
+/* Selected Card */
+
+.experience-card.selected{
+    background:#58CC02;
+    color:white;
+    border:2px solid #58CC02;
+}
+
+
+/* EXPERIENCE PAGE ICONS*/
+
+.experience-icon{
+    color:#58CC02;
+    font-size:24px;
+    min-width:30px;
+    text-align:center;
+}
+
+
+/* TABLET RESPONSIVE */
+
+@media(max-width:768px){
+
+    .main-title{
+        font-size:28px;
+    }
+
+    .duo-img{
+        width:90px;
+    }
+
+    .goal-card{
+        padding:15px;
+        font-size:15px;
+    }
+
+    /* Reason */
+
+    .reason-card{
+        font-size:16px;
+        padding:14px;
+    }
+
+    .reason-icon{
+        font-size:22px;
+    }
+
+    /* Experience Hero */
+
+    .experience-hero-icon{
+        width:100px;
+        height:100px;
+    }
+
+    .experience-hero-icon i{
+        font-size:55px;
+    }
+
+    /* Experience Cards */
+
+    .experience-card{
+        font-size:16px;
+        padding:14px;
+    }
+
+    .experience-icon{
+        font-size:22px;
+    }
+}
+
+
+/*MOBILE RESPONSIVE*/
+
+@media(max-width:576px){
+
+    /* Reason */
+
+    .reason-card{
+        font-size:15px;
+        padding:12px;
+    }
+
+    .reason-icon{
+        font-size:20px;
+    }
+
+    /* Experience Hero */
+
+    .experience-hero-icon{
+        width:80px;
+        height:80px;
+    }
+
+    .experience-hero-icon i{
+        font-size:42px;
+    }
+
+    /* Experience Cards */
+
+    .experience-card{
+        font-size:15px;
+        padding:12px;
+    }
+
+    .experience-icon{
+        font-size:20px;
+    }
+}

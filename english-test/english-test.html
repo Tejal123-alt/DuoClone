@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Practice Test | Duolingo English Test</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+<style>
+  :root {
+    --det-navy: #002D62;
+    --det-teal: #1FB5FF;
+    --det-orange: #FF9600;
+    --det-border: #E5E5E5;
+    --det-bg: #F9FBFC;
+    --color-green: #58CC02;
+  }
+  
+  body {
+    font-family: 'Nunito', 'Segoe UI', Arial, sans-serif;
+    color: #3C3C3C;
+    background-color: var(--det-bg);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* DET Sticky Header */
+  .det-header {
+    height: 75px;
+    background-color: #ffffff;
+    border-bottom: 2px solid var(--det-border);
+    padding: 0 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    z-index: 1000;
+  }
+  .det-logo {
+    font-size: 22px;
+    font-weight: 900;
+    color: var(--det-navy);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    text-transform: none;
+    text-decoration: none;
+  }
+  .det-logo span {
+    color: var(--det-teal);
+  }
+
+  /* Screens Container */
+  .screen-container {
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 20px;
+  }
+  .det-card {
+    background: #ffffff;
+    border: 2px solid var(--det-border);
+    border-radius: 20px;
+    padding: 40px;
+    width: 100%;
+    max-width: 680px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.04);
+  }
+
+  /* Welcome Screen styling */
+  .det-banner-graphic {
+    font-size: 70px;
+    color: var(--det-teal);
+    animation: floatIcon 3s ease-in-out infinite alternate;
+  }
+  .welcome-title {
+    font-size: 32px;
+    font-weight: 900;
+    color: var(--det-navy);
+  }
+  
+  /* Testing elements styling */
+  .timer-badge {
+    background-color: #FFF5E5;
+    color: var(--det-orange);
+    padding: 8px 16px;
+    border-radius: 12px;
+    font-weight: 800;
+    font-size: 15px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .question-prompt {
+    font-size: 20px;
+    font-weight: 800;
+    color: var(--det-navy);
+    margin-bottom: 24px;
+  }
+  
+  /* Cloze Test styling */
+  .cloze-passage {
+    line-height: 2.2;
+    font-size: 18px;
+    font-weight: 700;
+    background-color: #F8F9FA;
+    padding: 24px;
+    border-radius: 14px;
+    border: 2px solid var(--det-border);
+  }
+  .cloze-input {
+    width: 80px;
+    border: 2px solid var(--det-border);
+    border-radius: 6px;
+    padding: 2px 6px;
+    text-align: center;
+    font-weight: 800;
+    outline: none;
+  }
+  .cloze-input:focus {
+    border-color: var(--det-teal);
+  }
+
+  /* Vocabulary Word Selection Grid */
+  .word-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+  }
+  .word-card {
+    border: 2px solid var(--det-border);
+    border-radius: 12px;
+    padding: 16px;
+    text-align: center;
+    font-weight: 800;
+    font-size: 16px;
+    cursor: pointer;
+    user-select: none;
+    transition: all 0.15s ease;
+  }
+  .word-card.selected {
+    border-color: var(--det-teal);
+    background-color: #EBF8FF;
+    color: var(--det-teal);
+  }
+
+  /* Audio player button */
+  .audio-button {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background-color: var(--det-teal);
+    border: none;
+    color: #ffffff;
+    font-size: 24px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto 20px;
+    cursor: pointer;
+  }
+
+  /* Certificate Template styling */
+  .certificate-card {
+    border: 8px double #CD7F32;
+    padding: 40px;
+    background-color: #FAF6EE;
+    color: #4A3E3D;
+    text-align: center;
+    position: relative;
+    border-radius: 4px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+  }
+  .cert-header {
+    font-size: 14px;
+    font-weight: 900;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #8C7B76;
+    margin-bottom: 24px;
+  }
+  .cert-name {
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 32px;
+    font-style: italic;
+    font-weight: 700;
+    border-bottom: 2px solid #D2C4BE;
+    display: inline-block;
+    padding: 0 30px 10px;
+    margin-bottom: 24px;
+  }
+  .cert-score-display {
+    font-size: 64px;
+    font-weight: 900;
+    color: var(--det-navy);
+    margin: 16px 0;
+  }
+  .cert-cefr {
+    font-size: 18px;
+    font-weight: 800;
+    color: var(--det-orange);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 30px;
+  }
+  .cert-badge {
+    position: absolute;
+    bottom: 20px;
+    right: 30px;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background-color: var(--det-navy);
+    color: #ffffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 32px;
+    border: 4px double #ffffff;
+  }
+
+  @keyframes floatIcon {
+    from { transform: translateY(0); }
+    to { transform: translateY(-8px); }
+  }
+
+  /* PRINT STYLE RULES (CRITICAL) */
+  @media print {
+    body, html {
+      background: #ffffff;
+    }
+    .det-header, .btn-print-hide, .mobile-nav, #actionArea {
+      display: none !important;
+    }
+    .screen-container {
+      padding: 0;
+      margin: 0;
+    }
+    .det-card {
+      border: none;
+      box-shadow: none;
+      padding: 0;
+      max-width: 100%;
+    }
+    .certificate-card {
+      border: 8px double #CD7F32;
+      background-color: #ffffff !important;
+      padding: 50px;
+      page-break-inside: avoid;
+    }
+  }
+
+  @media (max-width: 576px) {
+    .det-header { padding: 0 20px; }
+    .det-card { padding: 24px 16px; }
+    .word-grid { grid-template-columns: 1fr; }
+    .certificate-card { padding: 20px 10px; }
+    .cert-name { font-size: 24px; }
+    .cert-score-display { font-size: 48px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Header bar -->
+<header class="det-header">
+  <a href="../learn.html" class="det-logo">
+    <i class="bi bi-patch-check-fill text-primary"></i>
+    Duolingo <span>English Test</span>
+  </a>
+  <div class="timer-badge" id="testTimerBlock" style="display: none;">
+    <i class="bi bi-hourglass-split"></i>
+    <span id="testTimer">05:00</span>
+  </div>
+</header>
+
+<!-- Main Workspace -->
+<main class="screen-container">
+  <div class="det-card" id="detCardContainer">
+    
+    <!-- Welcome/Landing Screen -->
+    <div id="welcomeScreen" class="text-center">
+      <div class="det-banner-graphic mb-4">
+        <i class="bi bi-award-fill"></i>
+      </div>
+      <h1 class="welcome-title mb-3">English Practice Test</h1>
+      <p class="text-sub fw-semibold fs-5 mb-5">Measure your English language skills. Take a quick, adaptive 5-minute placement test and earn a downloadable certificate.</p>
+      
+      <div class="row text-start g-3 mb-5 justify-content-center" style="max-width: 540px; margin: 0 auto;">
+        <div class="col-12 d-flex gap-3">
+          <i class="bi bi-lightning-charge-fill text-warning fs-4"></i>
+          <div>
+            <h5 class="fw-bold mb-1">Adaptive Questions</h5>
+            <p class="text-sub mb-0 fs-14">Exercises customize in difficulty based on your previous answers.</p>
+          </div>
+        </div>
+        <div class="col-12 d-flex gap-3 mt-4">
+          <i class="bi bi-file-earmark-pdf-fill text-danger fs-4"></i>
+          <div>
+            <h5 class="fw-bold mb-1">Estimated Score & Level</h5>
+            <p class="text-sub mb-0 fs-14">Get score predictions aligned to the official DET and CEFR standards.</p>
+          </div>
+        </div>
+      </div>
+      
+      <button class="btn btn-primary btn-lg w-100 py-3 uppercase-bold" id="startTestBtn" style="background-color: var(--det-navy); border: none; font-weight: 800; border-radius: 12px; box-shadow: 0 4px 0 #001f40;">
+        START PRACTICE TEST
+      </button>
+    </div>
+
+    <!-- Active Question Screen (Injected via script) -->
+    <div id="quizScreen" style="display: none;">
+      <h4 class="question-prompt" id="questionPrompt">Choose the correct words...</h4>
+      
+      <div id="quizWorkspace" class="my-4">
+        <!-- Exercise template injected here -->
+      </div>
+      
+      <div class="d-flex justify-content-end mt-5" id="actionArea">
+        <button class="btn btn-primary px-5 py-3 font-weight-black" id="nextQuizBtn" style="background-color: var(--det-navy); border: none; font-weight: 800; border-radius: 12px;" disabled>
+          NEXT
+        </button>
+      </div>
+    </div>
+
+    <!-- Certificate Complete Screen -->
+    <div id="resultScreen" style="display: none;">
+      <!-- High-fidelity Certificate wrapper -->
+      <div class="certificate-card mb-4" id="certificateToPrint">
+        <div class="cert-header">Duolingo English Test Practice Certificate</div>
+        <p class="text-sub mb-2 fw-semibold">This document certifies that</p>
+        <div class="cert-name" id="certNameText">Learner Name</div>
+        <p class="text-sub mb-3 fw-semibold">has completed the adaptive placement evaluation and earned an estimated score of</p>
+        
+        <div class="cert-score-display" id="certScoreText">120 / 160</div>
+        <div class="cert-cefr" id="certCefrText">Advanced Proficiency (C1)</div>
+        
+        <p class="text-sub fs-13 mb-0">Date of issuance: <span id="certDateText">2026-07-11</span> &bull; Certificate ID: DET-740523</p>
+        <div class="cert-badge">
+          <i class="bi bi-shield-fill-check"></i>
+        </div>
+      </div>
+      
+      <!-- Actions buttons -->
+      <div class="row g-3 btn-print-hide">
+        <div class="col-6">
+          <button class="btn btn-outline-primary btn-lg w-100 py-3 font-weight-black" id="printCertBtn" style="border-radius: 12px; font-weight: 800; border-color: var(--det-navy); color: var(--det-navy);">
+            <i class="bi bi-printer-fill me-1"></i> PRINT
+          </button>
+        </div>
+        <div class="col-6">
+          <button class="btn btn-primary btn-lg w-100 py-3 font-weight-black" id="exitTestBtn" style="background-color: var(--det-navy); border: none; font-weight: 800; border-radius: 12px;">
+            DASHBOARD
+          </button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</main>
+
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<!-- Custom Modals Engine -->
+<script src="../js/modals.js"></script>
+<script>
+$(document).ready(function() {
+    
+    // DET Setup and parameters
+    let userName = localStorage.getItem("userName") || "Learner";
+    let score = 90; // Starting baseline
+    let answersState = []; // Holds right/wrong responses
+    
+    let timerMinutes = 5;
+    let timerSeconds = 0;
+    let timerInterval = null;
+
+    // DET Question database
+    const questions = [
+        {
+            type: "word-select",
+            prompt: "Select the real English words in the grid below:",
+            words: [
+                { word: "Subtle", isReal: true },
+                { word: "Resplendor", isReal: false },
+                { word: "Flumox", isReal: false },
+                { word: "Integrate", isReal: true },
+                { word: "Perceive", isReal: true },
+                { word: "Glabrous", isReal: false }
+            ]
+        },
+        {
+            type: "cloze",
+            prompt: "Type the missing letters to complete the words in the passage below:",
+            passage: "Computers are dev<input type='text' maxlength='4' class='cloze-input' id='cl1' data-ans='ices'> that pro<input type='text' maxlength='4' class='cloze-input' id='cl2' data-ans='cess'> data. They have bec<input type='text' maxlength='3' class='cloze-input' id='cl3' data-ans='ome'> essen<input type='text' maxlength='4' class='cloze-input' id='cl4' data-ans='tial'> in mod<input type='text' maxlength='3' class='cloze-input' id='cl5' data-ans='ern'> life."
+        },
+        {
+            type: "dictation",
+            prompt: "Listen to the sentence and transcribe it exactly in the box:",
+            phrase: "The quick brown fox jumps over the lazy dog."
+        },
+        {
+            type: "photo-write",
+            prompt: "Write 1 or 2 sentences describing the description in the box:",
+            subject: "A bright green owl holding a language book and cheering under a golden crown.",
+            placeholder: "Describe the scene..."
+        }
+    ];
+
+    let currentQIndex = 0;
+
+    // Start Practice test
+    $("#startTestBtn").click(function() {
+        $("#welcomeScreen").hide();
+        $("#testTimerBlock").show();
+        $("#quizScreen").show();
+        
+        startTimer();
+        loadQuestion(questions[currentQIndex]);
+    });
+
+    function startTimer() {
+        timerInterval = setInterval(function() {
+            if (timerSeconds === 0) {
+                if (timerMinutes === 0) {
+                    clearInterval(timerInterval);
+                    finishTest();
+                    return;
+                }
+                timerMinutes--;
+                timerSeconds = 59;
+            } else {
+                timerSeconds--;
+            }
+            
+            let minText = timerMinutes < 10 ? "0" + timerMinutes : timerMinutes;
+            let secText = timerSeconds < 10 ? "0" + timerSeconds : timerSeconds;
+            $("#testTimer").text(`${minText}:${secText}`);
+        }, 1000);
+    }
+
+    // Load Adaptive Question
+    function loadQuestion(q) {
+        $("#questionPrompt").text(q.prompt);
+        $("#nextQuizBtn").prop("disabled", true);
+        
+        let $workspace = $("#quizWorkspace");
+        $workspace.html("");
+
+        if (q.type === "word-select") {
+            let grid = $('<div class="word-grid"></div>');
+            let selectedWords = [];
+            
+            q.words.forEach(w => {
+                let card = $(`<div class="word-card">${w.word}</div>`);
+                card.click(function() {
+                    $(this).toggleClass("selected");
+                    let wordVal = $(this).text();
+                    
+                    if ($(this).hasClass("selected")) {
+                        selectedWords.push(wordVal);
+                    } else {
+                        selectedWords = selectedWords.filter(item => item !== wordVal);
+                    }
+                    
+                    // Enable next when at least one card is selected
+                    $("#nextQuizBtn").prop("disabled", selectedWords.length === 0);
+                });
+                grid.append(card);
+            });
+            $workspace.append(grid);
+            
+            // Save validation rule on Next click
+            $("#nextQuizBtn").off("click").click(function() {
+                let correctCount = 0;
+                let wrongSelection = false;
+                
+                $(".word-card").each(function() {
+                    let wVal = $(this).text();
+                    let wasSelected = $(this).hasClass("selected");
+                    let original = q.words.find(item => item.word === wVal);
+                    
+                    if (wasSelected && original.isReal) correctCount++;
+                    if (wasSelected && !original.isReal) wrongSelection = true;
+                });
+                
+                let success = (correctCount >= 2 && !wrongSelection);
+                answersState.push(success);
+                score += success ? 15 : -10;
+                
+                nextQuestion();
+            });
+        }
+        else if (q.type === "cloze") {
+            let passageEl = $(`<div class="cloze-passage">${q.passage}</div>`);
+            $workspace.append(passageEl);
+            
+            $(".cloze-input").on("input", function() {
+                let allFilled = true;
+                $(".cloze-input").each(function() {
+                    if ($(this).val().trim() === "") allFilled = false;
+                });
+                $("#nextQuizBtn").prop("disabled", !allFilled);
+            });
+            
+            $("#nextQuizBtn").off("click").click(function() {
+                let allCorrect = true;
+                $(".cloze-input").each(function() {
+                    let val = $(this).val().trim().toLowerCase();
+                    let expected = $(this).data("ans").toLowerCase();
+                    if (val !== expected) allCorrect = false;
+                });
+                
+                answersState.push(allCorrect);
+                score += allCorrect ? 20 : -10;
+                
+                nextQuestion();
+            });
+        }
+        else if (q.type === "dictation") {
+            let audioBtn = $('<button class="audio-button"><i class="bi bi-volume-up-fill"></i></button>');
+            audioBtn.click(function() {
+                speakEnglishDictation(q.phrase);
+            });
+            $workspace.append(audioBtn);
+            
+            // Speak dictation automatically
+            setTimeout(() => speakEnglishDictation(q.phrase), 400);
+
+            let textarea = $('<textarea class="form-control" rows="4" placeholder="Type what you hear..."></textarea>');
+            textarea.on("input", function() {
+                $("#nextQuizBtn").prop("disabled", $(this).val().trim() === "");
+            });
+            $workspace.append(textarea);
+            
+            $("#nextQuizBtn").off("click").click(function() {
+                let input = textarea.val().trim().toLowerCase().replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g,"");
+                let correct = q.phrase.toLowerCase().replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g,"");
+                
+                let isMatch = (input === correct);
+                answersState.push(isMatch);
+                score += isMatch ? 20 : -15;
+                
+                nextQuestion();
+            });
+        }
+        else if (q.type === "photo-write") {
+            let imgInfoBox = $(`<div class="p-3 mb-3 border border-2 border-warning text-center rounded-3 bg-light font-weight-black text-warning"><i class="bi bi-image me-1"></i> [IMAGINED SCENE DESCRIPTION]<br><strong>"${q.subject}"</strong></div>`);
+            $workspace.append(imgInfoBox);
+
+            let textarea = $('<textarea class="form-control" rows="4" placeholder="Write description..."></textarea>');
+            textarea.on("input", function() {
+                $("#nextQuizBtn").prop("disabled", $(this).val().trim().split(/\s+/).length < 6); // Require at least 6 words
+            });
+            $workspace.append(textarea);
+            
+            $("#nextQuizBtn").off("click").click(function() {
+                // Adaptive review: positive points for descriptive submissions
+                answersState.push(true);
+                score += 15;
+                
+                finishTest();
+            });
+        }
+    }
+
+    function speakEnglishDictation(phrase) {
+        if ('speechSynthesis' in window) {
+            let utterance = new SpeechSynthesisUtterance(phrase);
+            utterance.lang = 'en-US';
+            utterance.rate = 0.85;
+            window.speechSynthesis.speak(utterance);
+        }
+    }
+
+    function nextQuestion() {
+        currentQIndex++;
+        if (currentQIndex < questions.length) {
+            loadQuestion(questions[currentQIndex]);
+        } else {
+            finishTest();
+        }
+    }
+
+    function finishTest() {
+        clearInterval(timerInterval);
+        $("#quizScreen").hide();
+        $("#testTimerBlock").hide();
+        
+        // Calculate dynamic DET score out of 160 based on correct questions
+        let finalScore = Math.max(70, Math.min(160, score));
+        let cefr = "Intermediate (B1)";
+        if (finalScore >= 140) cefr = "Expert Mastery (C2)";
+        else if (finalScore >= 115) cefr = "Advanced Proficiency (C1)";
+        else if (finalScore >= 95) cefr = "Upper-Intermediate (B2)";
+        
+        // Load details inside printable certificate
+        $("#certNameText").text(userName);
+        $("#certScoreText").text(`${finalScore} / 160`);
+        $("#certCefrText").text(cefr);
+        
+        // Format Current Date
+        let today = new Date();
+        let dateString = today.getFullYear() + '-' + ('0' + (today.getMonth() + 1)).slice(-2) + '-' + ('0' + today.getDate()).slice(-2);
+        $("#certDateText").text(dateString);
+        
+        $("#resultScreen").show();
+        
+        showDuoModal({
+            title: "Test Finished!",
+            message: `Congratulations, ${userName}! You completed the adaptive assessment. Your predicted DET score is ${finalScore}/160 (${cefr.split(" ")[0]}).`,
+            type: "success",
+            buttonText: "VIEW CERTIFICATE"
+        });
+    }
+
+    // Print triggers
+    $("#printCertBtn").click(function() {
+        window.print();
+    });
+
+    // Exit
+    $("#exitTestBtn").click(function() {
+        window.location.href = "../learn.html";
+    });
+
+});
+</script>
+</body>
+</html>

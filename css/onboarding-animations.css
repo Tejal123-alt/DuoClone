@@ -1,0 +1,80 @@
+/* onboarding-animations.css */
+
+/* Page background gradients */
+body.goal-page {background: linear-gradient(135deg, #e0f7fa, #e8f5e9);}
+body.reason-page {background: linear-gradient(135deg, #fff3e0, #e1f5fe);}
+body.motivation-page {background: linear-gradient(135deg, #f3e5f5, #e3f2fd);}
+body.experience-page {background: linear-gradient(135deg, #ffecb3, #e8f5e9);}
+body.loading-page {background: linear-gradient(135deg, #e0f2f1, #fffde7);}
+
+/* Emoji icon size and float animation */
+.emoji-icon {
+    font-size: 2rem;
+    animation: float 4s ease-in-out infinite;
+}
+/* Flag animation */
+@keyframes pulseFlag {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.07); }
+    100% { transform: scale(1); }
+}
+.flag-animate {
+    animation: pulseFlag 2s infinite;
+}
+
+.goal-card:hover, .reason-card:hover, .experience-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 15px rgba(0,0,0,0.15);
+}
+
+/* Pulse animation for continue buttons */
+@keyframes pulse {
+    0% { box-shadow: 0 0 0 0 rgba(88,204,2,0.7); }
+    70% { box-shadow: 0 0 0 10px rgba(88,204,2,0); }
+    100% { box-shadow: 0 0 0 0 rgba(88,204,2,0); }
+}
+.continue-btn {
+    animation: pulse 2s infinite;
+}
+
+/* Floating emoji animation */
+@keyframes float {
+    0% { transform: translateY(0) rotate(0deg); }
+    50% { transform: translateY(-10px) rotate(5deg); }
+    100% { transform: translateY(0) rotate(0deg); }
+}
+.world-emoji {
+    font-size: 80px;
+    animation: float 3s ease-in-out infinite;
+    margin: 20px auto;
+    text-align: center;
+}
+
+/* Hello texts cycle */
+@keyframes fadeInOut {
+    0%, 100% { opacity: 0; }
+    10%, 90% { opacity: 1; }
+}
+.hello-text {
+    font-size: 24px;
+    margin-top: 10px;
+    animation: fadeInOut 12s infinite;
+    text-align: center;
+    color: #58CC02;
+}
+/* Different language messages via nth-child */
+.hello-text span { display: none; }
+.hello-text span:nth-child(1) { animation-delay: 0s; }
+.hello-text span:nth-child(2) { animation-delay: 2s; }
+.hello-text span:nth-child(3) { animation-delay: 4s; }
+.hello-text span:nth-child(4) { animation-delay: 6s; }
+.hello-text span:nth-child(5) { animation-delay: 8s; }
+.hello-text span:nth-child(6) { animation-delay: 10s; }
+.hello-text span { animation: fadeInOut 12s infinite; }
+/* Gradient card utilities */
+.card-gradient-1 {background: linear-gradient(135deg, #ff9a9e, #fad0c4);}
+.card-gradient-2 {background: linear-gradient(135deg, #a1c4fd, #c2e9fb);}
+.card-gradient-3 {background: linear-gradient(135deg, #fbc2eb, #a6c1ee);}
+.feature-card-icon i {
+    font-size: 3rem;
+}

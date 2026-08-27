@@ -1,0 +1,100 @@
+/* onboarding-custom.css */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap');
+
+:root {
+  --primary: #58CC02;
+  --secondary: #1CB0F6;
+  --accent: #FFB400;
+  --text: #3c3c3c;
+  --bg: #ffffff;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  color: var(--text);
+  background-color: var(--bg);
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  max-width: 600px;
+  margin: 2rem auto;
+  text-align: center;
+}
+
+.heading-lg {
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: var(--primary);
+  margin-bottom: 0.5rem;
+}
+
+.emoji-icon {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+.btn {
+  background-color: var(--primary);
+  color: white;
+  padding: 1rem 2rem;
+  border-radius: 12px;
+  font-weight: 800;
+  cursor: pointer;
+  transition: transform 0.2s, background-color 0.2s;
+  display: inline-block;
+  text-decoration: none;
+}
+
+.btn:hover {
+  transform: translateY(-3px);
+  background-color: #46a302;
+}
+
+.earth-rotate {
+  animation: spin 8s linear infinite;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.bounce {
+  animation: bounce 1.5s infinite alternate;
+}
+
+@keyframes bounce {
+  from {
+    transform: translateY(0);
+  }
+
+  to {
+    transform: translateY(-10px);
+  }
+}
+
+.flag-large {
+  width: 64px;
+  height: auto;
+}
+
+/* Experience page enhancements */
+.experience-page .container {
+  max-width: 720px;
+}
+.experience-card {
+  padding: 1.5rem;
+  min-height: 120px;
+}
+.experience-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}

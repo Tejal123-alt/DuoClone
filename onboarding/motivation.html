@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Motivation Coach | Duolingo</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="../css/onboarding.css">
+<style>
+  .speech-bubble {
+    position: relative;
+    background: #ffffff;
+    border: 2px solid #e5e5e5;
+    border-radius: 18px;
+    padding: 20px;
+    margin: 20px auto 40px;
+    max-width: 480px;
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 1.5;
+    color: #3c3c3c;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+  }
+  .owl{
+width:130px;
+animation:bounce 1s infinite;
+}
+  .speech-bubble::after, .speech-bubble::before {
+    top: 100%;
+    left: 50%;
+    border: solid transparent;
+    content: " ";
+    height: 0;
+    width: 0;
+    position: absolute;
+    pointer-events: none;
+  }
+  .speech-bubble::after {
+    border-color: rgba(255, 255, 255, 0);
+    border-top-color: #ffffff;
+    border-width: 12px;
+    margin-left: -12px;
+  }
+  .speech-bubble::before {
+    border-color: rgba(229, 229, 229, 0);
+    border-top-color: #e5e5e5;
+    border-width: 15px;
+    margin-left: -15px;
+  }
+  .coach-owl {
+    width: 140px;
+    margin: 0 auto;
+    display: block;
+    animation: waddle-owl 2s ease-in-out infinite alternate;
+  }
+  @keyframes waddle-owl {
+    0% { transform: translateY(0) rotate(-3deg); }
+    100% { transform: translateY(-8px) rotate(3deg); }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-lg-6 col-md-8 col-sm-12">
+      <!-- Progress Bar -->
+      <div class="progress mt-4 mb-5">
+        <div class="progress-bar bg-success" style="width: 45%"></div>
+      </div>
+<div class="text-center">
+        <img src="https://cdn-icons-png.flaticon.com/512/616/616430.png"
+             class="owl mb-4">
+</div>
+      <!-- Coach Interaction -->
+      <div class="text-center mt-5">
+        <h2 class="h2 mb-4">You've got this!</h2>
+        <div class="speech-bubble" id="coachSpeechBubble">
+          Preparing custom coaching tips...
+        </div>
+        <i class="bi bi-cat emoji-icon bounce"></i>
+      </div>
+
+      <!-- Continue Button -->
+      <button id="motivationContinueBtn" class="btn btn-success continue-btn w-100 mt-5 btn-duo btn-duo-green">
+        CONTINUE
+    </button>
+    <!-- Decorative icons -->
+    <div class="d-flex justify-content-center my-4">
+        <i class="bi bi-star emoji-icon me-3 bounce"></i>
+        <i class="bi bi-heart emoji-icon me-3 bounce"></i>
+        <i class="bi bi-music-note emoji-icon bounce"></i>
+    </div>
+    </div>
+  </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script>
+$(document).ready(function() {
+    let reason = localStorage.getItem("learningReason") || "Just For Fun";
+    let message = "That's awesome! Let's build a daily habit that makes learning easy and fun.";
+    
+    // Custom messages tailored to selected reasons
+    const cleanReason = reason.toLowerCase();
+    if (cleanReason.includes("travel")) {
+        message = "Pack your bags! Learning a language helps you connect with locals, navigate cities confidently, and explore new cultures.";
+    } else if (cleanReason.includes("school")) {
+        message = "Ace your classes! Studies show that language learning boosts academic performance, enhances logic, and looks great on resumes.";
+    } else if (cleanReason.includes("career")) {
+        message = "Level up your career! Bilingual employees unlock up to 20% higher earnings and access thousands of global job opportunities.";
+    } else if (cleanReason.includes("family")) {
+        message = "Connect deeper! Speaking the native language of your family and friends is the ultimate gift of love and understanding.";
+    } else if (cleanReason.includes("culture")) {
+        message = "Expand your mind! Dive into foreign literature, cinema, culinary history, and arts with native comprehension.";
+    } else if (cleanReason.includes("brain")) {
+        message = "Keep sharp! Language study is a super-workout for your memory, focus, and long-term cognitive health.";
+    } else if (cleanReason.includes("fun")) {
+        message = "Enjoy the journey! Learning is a game on Duolingo—fun challenges, streaks, and daily rewards await you every step of the way.";
+    }
+    
+    // Set text dynamically
+    $("#coachSpeechBubble").text(message);
+    
+    // Redirect on click
+    $("#motivationContinueBtn").click(function() {
+        window.location.href = "experience.html";
+    });
+});
+</script>
+</body>
+</html>

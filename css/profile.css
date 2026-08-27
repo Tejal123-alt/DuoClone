@@ -1,0 +1,145 @@
+body{
+
+background:#f7f7f7;
+font-family:Arial,sans-serif;
+
+}
+
+.profile-card{
+
+background:white;
+padding:35px;
+border-radius:20px;
+box-shadow:0 4px 15px rgba(0,0,0,.08);
+
+}
+
+.profile-img{
+
+width:130px;
+height:130px;
+border-radius:50%;
+margin-bottom:15px;
+border:5px solid #58cc02;
+
+}
+
+.stat-box{
+
+background:#f8f9fa;
+padding:20px;
+border-radius:15px;
+
+}
+
+.stat-box h3{
+
+font-weight:bold;
+color:#58cc02;
+
+}
+
+.achievement-item{
+
+background:#f8f9fa;
+padding:15px;
+border-radius:12px;
+margin-bottom:10px;
+font-weight:600;
+
+}
+
+#logoutBtn{
+
+height:50px;
+font-weight:bold;
+
+}
+
+@media(max-width:768px){
+
+.profile-card{
+
+padding:20px;
+
+}
+
+.profile-img{
+
+width:100px;
+height:100px;
+
+}
+
+}
+/* Stats Icons */
+
+.stat-fire{
+    color:#ff9600;
+}
+
+.stat-star{
+    color:#ffc800;
+}
+
+.languages-icon{
+    color:#1bd157;
+}
+
+
+/* Achievement Icons */
+
+.achievement-item{
+    display:flex;
+    align-items:center;
+    gap:12px;
+}
+
+.achievement-icon{
+    color:#58CC02;
+    font-size:20px;
+    min-width:25px;
+}
+
+
+/*Profile Image */
+
+.profile-img{
+    width:120px;
+    height:120px;
+    border-radius:50%;
+    object-fit:cover;
+}
+
+
+/* Responsive */
+
+@media(max-width:768px){
+
+    .achievement-item{
+        font-size:15px;
+    }
+
+    .achievement-icon{
+        font-size:18px;
+    }
+
+    .profile-img{
+        width:100px;
+        height:100px;
+    }
+
+}
+
+@media(max-width:576px){
+
+    .profile-img{
+        width:85px;
+        height:85px;
+    }
+
+    .achievement-item{
+        font-size:14px;
+    }
+
+}

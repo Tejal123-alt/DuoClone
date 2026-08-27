@@ -1,0 +1,211 @@
+body{
+
+background:#051d29;
+
+height:100vh;
+
+display:flex;
+
+justify-content:center;
+
+align-items:center;
+
+font-family:Arial,sans-serif;
+
+}
+
+.login-container{
+
+width:100%;
+
+max-width:600px;
+
+padding:20px;
+
+position:relative;
+
+}
+
+.close-btn{
+
+position:absolute;
+
+left:10px;
+
+top:10px;
+
+font-size:30px;
+
+color:#7d8b95;
+
+text-decoration:none;
+
+}
+
+.signup-btn{
+
+position:absolute;
+
+right:10px;
+
+top:10px;
+
+padding:12px 25px;
+
+border:2px solid #3b5568;
+
+border-radius:15px;
+
+color:#4dbcf3;
+
+text-decoration:none;
+
+font-weight:bold;
+
+}
+
+.login-box{
+
+margin-top:70px;
+
+text-align:center;
+
+}
+
+h1{
+
+color:white;
+
+margin-bottom:30px;
+
+font-weight:bold;
+
+}
+
+.form-control {
+  background: #132d3b;
+  border: 2px solid #304757;
+  color: white;
+  height: 55px;
+  margin-bottom: 15px;
+  border-radius: 15px;
+  font-weight: 600;
+  transition: all 0.2s ease;
+}
+
+.form-control:focus {
+  background: #193a4c;
+  border-color: #4dbcf3;
+  color: white;
+  box-shadow: 0 0 0 4px rgba(77, 188, 243, 0.2);
+  outline: none;
+}
+
+.form-control::placeholder {
+  color: #d7dde2;
+}
+
+.password-wrapper {
+  position: relative;
+}
+
+#forgot {
+  position: absolute;
+  right: 15px;
+  top: 17px;
+  color: #516575;
+  font-weight: bold;
+  font-size: 14px;
+  cursor: pointer;
+  transition: color 0.15s ease;
+}
+
+#forgot:hover {
+  color: #4dbcf3;
+}
+
+.login-btn {
+  width: 100%;
+  background: #49b3e8;
+  color: white;
+  font-weight: bold;
+  height: 55px;
+  border-radius: 15px;
+  margin-top: 10px;
+  border: none;
+  box-shadow: 0 4px 0 #1899D6;
+  transition: all 0.1s ease;
+}
+
+.login-btn:hover {
+  background: #5ebff2;
+}
+
+.login-btn:active {
+  transform: translateY(4px);
+  box-shadow: 0 0 0 #1899D6;
+}
+
+.divider {
+  display: flex;
+  align-items: center;
+  margin: 25px 0;
+  color: #647786;
+}
+
+.divider::before,
+.divider::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: #3c4f5d;
+}
+
+.divider span {
+  margin: 0 15px;
+}
+
+.social-buttons {
+  display: flex;
+  gap: 15px;
+}
+
+.social-btn {
+  flex: 1;
+  background: none;
+  border: 2px solid #344b5a;
+  height: 50px;
+  border-radius: 15px;
+  color: white;
+  font-weight: bold;
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.social-btn:hover {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: #4dbcf3;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(77, 188, 243, 0.15);
+}
+
+.social-btn:active {
+  transform: translateY(1px);
+}
+
+.policy {
+  margin-top: 30px;
+  color: #758898;
+  font-size: 14px;
+}
+
+.close-btn:hover {
+  color: #fff;
+  transform: scale(1.15);
+}
+
+.signup-btn:hover {
+  background: rgba(77, 188, 243, 0.1);
+  border-color: #4dbcf3;
+  color: #fff;
+}
