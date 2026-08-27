@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Leaderboard | Duolingo</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="css/dashboard.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+<style>
+  .leaderboard-card {
+    border: 2px solid var(--color-border);
+    border-radius: 18px;
+    background: #ffffff;
+    padding: 24px;
+    margin-bottom: 24px;
+  }
+  .league-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid var(--color-border);
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+  }
+  .league-info {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  .league-badge {
+    width: 60px;
+    height: 60px;
+    border-radius: 12px;
+    background-color: #CD7F32; /* Bronze color */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #ffffff;
+    font-size: 28px;
+    box-shadow: 0 4px 0 #A85A1A;
+    animation: bounceBadge 2s infinite alternate;
+  }
+  .league-title {
+    font-size: 22px;
+    font-weight: 900;
+    margin-bottom: 2px;
+  }
+  .league-desc {
+    font-size: 14px;
+    color: var(--color-text-sub);
+    font-weight: 600;
+    margin-bottom: 0;
+  }
+  .timer-box {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 800;
+    color: #FF9600;
+    font-size: 15px;
+    background: #FFF5E5;
+    padding: 8px 16px;
+    border-radius: 10px;
+  }
+  
+  /* Ranking List */
+  .ranking-table {
+    width: 100%;
+  }
+  .rank-row {
+    display: flex;
+    align-items: center;
+    padding: 14px 16px;
+    border-radius: 14px;
+    margin-bottom: 8px;
+    border: 2px solid transparent;
+    transition: background 0.15s ease;
+  }
+  .rank-row:hover {
+    background-color: #f7f7f7;
+  }
+  .rank-row.user-row {
+    background-color: #EBF8FF;
+    border-color: var(--color-blue);
+  }
+  .rank-number {
+    width: 40px;
+    font-weight: 900;
+    font-size: 16px;
+    color: var(--color-text-sub);
+  }
+  .rank-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: #e5e5e5;
+    color: #777777;
+    font-weight: 800;
+    font-size: 16px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 16px;
+  }
+  .avatar-1 { background-color: #FEE7E7; color: #FF4B4B; }
+  .avatar-2 { background-color: #EBF8FF; color: #1CB0F6; }
+  .avatar-3 { background-color: #E9F7D8; color: #58CC02; }
+  .avatar-4 { background-color: #FFF5D6; color: #E6B400; }
+  .avatar-5 { background-color: #F3EFFF; color: #8743FF; }
+  .avatar-user { background-color: #58CC02; color: #ffffff; border: 2px solid #ffffff; box-shadow: 0 0 0 2px #58CC02; }
+  
+  .player-name {
+    font-weight: 800;
+    font-size: 16px;
+    color: var(--color-text-main);
+    flex-grow: 1;
+  }
+  .player-xp {
+    font-weight: 800;
+    font-size: 16px;
+    color: var(--color-text-main);
+  }
+  
+  /* Zones markers */
+  .promotion-row {
+    border-left: 4px solid var(--color-green);
+  }
+  .demotion-row {
+    border-left: 4px solid var(--color-red);
+  }
+  .zone-text {
+    font-size: 12px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+    margin: 12px 16px 4px;
+  }
+  .text-promotion { color: var(--color-green); }
+  .text-demotion { color: var(--color-red); }
+
+  @keyframes bounceBadge {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(-4px); }
+  }
+</style>
+</head>
+<body>
+
+<!-- Fixed Sidebar (Desktop) -->
+<nav class="sidebar">
+  <h2 class="logo">
+    <i class="bi bi-globe-americas-fill"></i>
+    Duolingo
+  </h2>
+  
+  <div class="nav flex-column">
+    <a class="nav-link" href="learn.html">
+      <i class="bi bi-house-door-fill"></i> Learn
+    </a>
+    <a class="nav-link active" href="leaderboard.html">
+      <i class="bi bi-trophy-fill"></i> Leaderboard
+    </a>
+    <a class="nav-link" href="profile.html">
+      <i class="bi bi-person-fill"></i> Profile
+    </a>
+    <a class="nav-link" href="shop.html">
+      <i class="bi bi-bag-fill"></i> Shop
+    </a>
+  </div>
+  
+  <button id="logoutBtnSidebar" class="btn btn-outline-danger w-100 logout-btn-sidebar uppercase-bold logout-btn">
+    <i class="bi bi-box-arrow-left"></i> Logout
+  </button>
+</nav>
+
+<!-- Top Sticky Stats Header -->
+<header class="top-stats-header">
+  <div class="stat-item stat-streak">
+    <i class="bi bi-fire"></i>
+    <span id="streakCount">0</span>
+  </div>
+  <div class="stat-item stat-gems">
+    <i class="bi bi-gem"></i>
+    <span id="gemsCount">100</span>
+  </div>
+  <div class="stat-item stat-hearts">
+    <i class="bi bi-heart-fill"></i>
+    <span id="heartsCount">5</span>
+  </div>
+  <div class="stat-item stat-xp active">
+    <i class="bi bi-star-fill"></i>
+    <span id="xpCount">0 XP</span>
+  </div>
+</header>
+
+<!-- Main leaderboard panel -->
+<main class="lesson-area-container">
+  <div class="max-w-720 mx-auto">
+    
+    <div class="leaderboard-card">
+      <div class="league-header">
+        <div class="league-info">
+          <div class="league-badge">
+            <i class="bi bi-shield-fill"></i>
+          </div>
+          <div>
+            <h2 class="league-title">Bronze League</h2>
+            <p class="league-desc">Top 3 competitors promote to the Silver League!</p>
+          </div>
+        </div>
+        
+        <div class="timer-box">
+          <i class="bi bi-clock-history"></i>
+          <span id="timerText">2d 14h 5m remaining</span>
+        </div>
+      </div>
+      
+      <!-- Table Standings -->
+      <div class="ranking-table">
+        <div class="zone-text text-promotion">Promotion Zone</div>
+        <div id="promotedContainer"></div>
+        
+        <div class="zone-text text-sub">Consistent Zone</div>
+        <div id="stableContainer"></div>
+        
+        <div class="zone-text text-demotion">Demotion Zone</div>
+        <div id="demotedContainer"></div>
+      </div>
+      
+    </div>
+    
+  </div>
+</main>
+
+<!-- Mobile Bottom Navigation Bar -->
+<nav class="mobile-nav d-lg-none">
+  <a class="mobile-nav-link" href="learn.html">
+    <i class="bi bi-house-door-fill"></i>
+    <span>Learn</span>
+  </a>
+  <a class="mobile-nav-link active" href="leaderboard.html">
+    <i class="bi bi-trophy-fill"></i>
+    <span>Rank</span>
+  </a>
+  <a class="mobile-nav-link" href="profile.html">
+    <i class="bi bi-person-fill"></i>
+    <span>Profile</span>
+  </a>
+  <a class="mobile-nav-link" href="shop.html">
+    <i class="bi bi-bag-fill"></i>
+    <span>Shop</span>
+  </a>
+</nav>
+
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<!-- Custom Modals Engine -->
+<script src="js/modals.js"></script>
+<script>
+$(document).ready(function() {
+    
+    // Stats Sync Engine
+    let userStreak = parseInt(localStorage.getItem("userStreak") || "0");
+    let userXP = parseInt(localStorage.getItem("userXP") || "0");
+    let userGems = parseInt(localStorage.getItem("userGems") || "100");
+    let userHearts = parseInt(localStorage.getItem("userHearts") || "5");
+    let userName = localStorage.getItem("userName") || "Learner";
+    
+    $("#streakCount").text(userStreak);
+    $("#gemsCount").text(userGems);
+    $("#heartsCount").text(userHearts);
+    $("#xpCount").text(userXP + " XP");
+
+    // Competitors array
+    const competitors = [
+        { name: "Sophia Miller", xp: 320, avatarClass: "avatar-1", initials: "SM" },
+        { name: "Liam Wilson", xp: 260, avatarClass: "avatar-2", initials: "LW" },
+        { name: "Olivia Johnson", xp: 210, avatarClass: "avatar-3", initials: "OJ" },
+        { name: "Noah Thompson", xp: 180, avatarClass: "avatar-4", initials: "NT" },
+        { name: "Emma Rodriguez", xp: 140, avatarClass: "avatar-5", initials: "ER" },
+        { name: "Jackson White", xp: 90, avatarClass: "avatar-1", initials: "JW" },
+        { name: "Ava Martin", xp: 70, avatarClass: "avatar-2", initials: "AM" },
+        { name: "Lucas Garcia", xp: 40, avatarClass: "avatar-3", initials: "LG" },
+        { name: "Isabella Martinez", xp: 10, avatarClass: "avatar-4", initials: "IM" }
+    ];
+
+    // Push current user into board
+    const userInitials = userName.substring(0, 2).toUpperCase();
+    competitors.push({
+        name: userName + " (You)",
+        xp: userXP,
+        avatarClass: "avatar-user",
+        initials: userInitials,
+        isUser: true
+    });
+
+    // Sort standings
+    competitors.sort((a, b) => b.xp - a.xp);
+
+    // Render ranks in correct zone containers
+    $("#promotedContainer, #stableContainer, #demotedContainer").html("");
+    
+    competitors.forEach((player, index) => {
+        let rank = index + 1;
+        let zoneClass = "";
+        let targetContainer = $("#stableContainer");
+        
+        if (rank <= 3) {
+            zoneClass = "promotion-row";
+            targetContainer = $("#promotedContainer");
+        } else if (rank >= 9) {
+            zoneClass = "demotion-row";
+            targetContainer = $("#demotedContainer");
+        }
+        
+        let rowHtml = `
+            <div class="rank-row ${zoneClass} ${player.isUser ? 'user-row' : ''}">
+                <div class="rank-number">${rank}</div>
+                <div class="rank-avatar ${player.avatarClass}">${player.initials}</div>
+                <div class="player-name">${player.name}</div>
+                <div class="player-xp">${player.xp} XP</div>
+            </div>
+        `;
+        
+        targetContainer.append(rowHtml);
+    });
+
+    // Countdown Timer logic
+    let totalMinutes = 2 * 24 * 60 + 14 * 60 + 5; // 2d 14h 5m in minutes
+    
+    function updateTimer() {
+        if (totalMinutes <= 0) {
+            $("#timerText").text("League ended!");
+            return;
+        }
+        totalMinutes--;
+        
+        let d = Math.floor(totalMinutes / (24 * 60));
+        let h = Math.floor((totalMinutes % (24 * 60)) / 60);
+        let m = totalMinutes % 60;
+        
+        $("#timerText").text(`${d}d ${h}h ${m}m remaining`);
+    }
+    
+    setInterval(updateTimer, 60000); // Update every minute
+
+    // Logout
+    $("#logoutBtnSidebar").click(function() {
+        showDuoModal({
+            title: "Confirm Logout",
+            message: "Are you sure you want to sign out?",
+            type: "warning",
+            buttonText: "LOG OUT",
+            cancelText: "CANCEL",
+            onConfirm: function() {
+                localStorage.removeItem("userName");
+                localStorage.removeItem("userEmail");
+                localStorage.removeItem("userPassword");
+                window.location.href = "login.html";
+            }
+        });
+    });
+
+});
+</script>
+</body>
+</html>

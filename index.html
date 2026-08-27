@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>
+    Duolingo - The world's best way to learn a language
+  </title>
+
+  <meta name="description" content="Learn a new language with Duolingo. It is 100% free, fun, and science-backed.">
+
+  <!-- Favicon -->
+  <link rel="icon" href="favicon.ico">
+
+  <!-- Google Font  -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800;900&display=swap"
+    rel="stylesheet">
+
+  <!-- Bootstrap CSS  -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/onboarding-animations.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+
+  <!-- Custom CSS  -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+  <!-- Sticky Navbar  -->
+  <nav class="navbar navbar-expand-xxl sticky-top border-bottom" id="main-nav">
+    <div class="container d-flex justify-content-between align-items-center">
+      <a class="navbar-brand d-flex align-items-center gap-2" href="#" id="nav-logo">
+        <i class="bi bi-globe-americas-fill text-primary fs-2"></i>
+        <span class="logo-text">Duolingo</span>
+      </a>
+
+      <!-- Language Selector & Controls (Desktop Right) -->
+      <div class="d-flex align-items-center gap-3">
+        <div class="language-dropdown-wrapper position-relative">
+          <button class="btn btn-lang d-flex align-items-center gap-2" id="lang-selector-btn" aria-expanded="false">
+            <span class="globe-icon-span">
+              <i class="bi bi-globe"></i>
+            </span>
+            <span class="selected-lang-text uppercase-bold">Site Language: English</span>
+            <i class="bi bi-chevron-down arrow-icon"></i>
+          </button>
+
+          <!-- Dropdown Menu: Clean Grid of Flags powered by jQuery -->
+          <div class="dropdown-flag-grid" id="flag-dropdown-menu">
+            <div class="flag-grid-header">Choose your UI language:</div>
+            <div class="flag-grid-body">
+              <a href="#" class="flag-grid-item active" data-lang="English">
+                <span class="flag-icon-circle flag-us"></span>
+                <span class="flag-name">English</span>
+              </a>
+              <a href="#" class="flag-grid-item" data-lang="Español">
+                <span class="flag-icon-circle flag-es"></span>
+                <span class="flag-name">Español</span>
+              </a>
+              <a href="#" class="flag-grid-item" data-lang="Français">
+                <span class="flag-icon-circle flag-fr"></span>
+                <span class="flag-name">Français</span>
+              </a>
+              <a href="#" class="flag-grid-item" data-lang="Deutsch">
+                <span class="flag-icon-circle flag-de"></span>
+                <span class="flag-name">Deutsch</span>
+              </a>
+              <a href="#" class="flag-grid-item" data-lang="Italiano">
+                <span class="flag-icon-circle flag-it"></span>
+                <span class="flag-name">Italiano</span>
+              </a>
+              <a href="#" class="flag-grid-item" data-lang="Português">
+                <span class="flag-icon-circle flag-br"></span>
+                <span class="flag-name">Português</span>
+              </a>
+              <a href="#" class="flag-grid-item" data-lang="日本語">
+                <span class="flag-icon-circle flag-jp"></span>
+                <span class="flag-name">日本語</span>
+              </a>
+              <a href="#" class="flag-grid-item" data-lang="中文">
+                <span class="flag-icon-circle flag-cn"></span>
+                <span class="flag-name">中文</span>
+              </a>
+              <a href="#" class="flag-grid-item" data-lang="Русский">
+                <span class="flag-icon-circle flag-ru"></span>
+                <span class="flag-name">Русский</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section  -->
+  <header class="hero-section d-flex align-items-center">
+    <div class="container">
+      <div class="row align-items-center justify-content-center text-center text-lg-start">
+
+        <!-- Left Side: Spinning/Floating 3D-like Globe Graphic  -->
+        <div class="col-lg-6 col-md-12 d-flex justify-content-center mb-5 mb-lg-0">
+
+          <div class="hero-globe text-center">
+            <div class="orbiting-bubble bubble-1">Hola!</div>
+            <div class="orbiting-bubble bubble-2">Bonjour!</div>
+            <div class="orbiting-bubble bubble-3">Hello!</div>
+            <div class="orbiting-bubble bubble-4">Ciao!</div>
+            <div class="orbiting-bubble bubble-5">こんにちは</div>
+            <i class="bi bi-globe-americas globe-icon earth-rotate"></i>
+            <div class="hello-text"><span> Hello</span><span> Hola</span><span>🙋‍♀️ Bonjour</span><span>👋
+                Ciao</span><span> こんにちは</span><span> Привет</span></div>
+          </div>
+
+        </div>
+
+        <!-- Right Side: Header and Buttons -->
+        <div class="col-lg-6 col-md-12 d-flex flex-column align-items-center align-items-lg-start">
+          <div class="logo-hero-badge mb-4 d-none d-lg-block">
+            <div class="hero-owl">
+              <i class="bi bi-robot"></i>
+            </div>
+          </div>
+
+          <h1 class="main-hero-title mb-4">
+            The free, fun, and effective way to learn a language!
+          </h1>
+
+          <div class="cta-stack w-100 d-flex flex-column align-items-center align-items-lg-start gap-3">
+            <button id="startBtn" class="btn btn-duo btn-duo-green w-100 max-w-360 ripple">
+              Get Started
+            </button>
+            <button id="loginBtn" class="btn btn-duo btn-duo-white w-100 max-w-360 ripple">
+              I Already Have An Account
+            </button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </header>
+
+  <!-- Stats Banner / Social Proof -->
+  <section class="stats-banner border-top border-bottom py-4 bg-white fade-up">
+
+    <div class="container">
+      <div class="row text-center gy-4 gy-md-0">
+        <div class="col-md-4 stats-item">
+          <div class="stats-number text-green">40+</div>
+          <div class="stats-label text-uppercase font-weight-bold">Languages Available</div>
+        </div>
+        <div class="col-md-4 stats-item border-start-md">
+          <div class="stats-number text-blue">1.5B+</div>
+          <div class="stats-label text-uppercase font-weight-bold">Lessons Completed Daily</div>
+        </div>
+        <div class="col-md-4 stats-item border-start-md">
+          <div class="stats-number text-purple">100%</div>
+          <div class="stats-label text-uppercase font-weight-bold">Free & Scientifically Backed</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features Section: Alternating Grid -->
+  <section class="features-section py-5">
+    <div class="container">
+
+      <!-- Feature 1 -->
+
+      <div class="row align-items-center py-5">
+
+        <!-- Left Side Icon -->
+
+        <div class="col-lg-6 text-center mb-4 mb-lg-0">
+
+          <div class="feature-card-icon">
+
+            <i class="bi bi-controller"></i>
+
+          </div>
+
+        </div>
+
+        <!-- Right Side Content -->
+
+        <div class="col-lg-6 px-lg-5 text-center text-lg-start">
+
+          <h2 class="feature-title mb-3 text-green">
+            Make it fun, make it habit
+          </h2>
+
+          <p class="feature-desc text-sub">
+            Game-like features, fun challenges, rewards, and daily
+            goals make learning enjoyable. Build a learning habit
+            that keeps you motivated and coming back every day.
+          </p>
+
+        </div>
+
+      </div>
+
+      <!-- Feature 2 -->
+      <div class="row align-items-center py-5 flex-lg-row-reverse">
+
+        <!-- Icon Side -->
+        <div class="col-lg-6 mb-4 mb-lg-0 text-center">
+
+          <div class="feature-card-icon">
+
+            <i class="bi bi-fire"></i>
+
+            <h4 class="mt-3">7 Day Streak</h4>
+
+            <p class="text-muted">
+              Stay consistent and keep your streak alive.
+            </p>
+
+          </div>
+
+        </div>
+
+        <!-- Text Side -->
+        <div class="col-lg-6 px-lg-5 text-center text-lg-start">
+
+          <h2 class="feature-title mb-3 text-orange">
+            Keep learning on track
+          </h2>
+
+          <p class="feature-desc text-sub">
+            Streaks keep you accountable. Complete lessons daily to build your streak and
+            earn rewards, helping you stay motivated every single step of the way.
+          </p>
+
+        </div>
+
+      </div>
+
+      <!-- Feature 3 -->
+      <div class="row align-items-center py-5">
+        <!-- Left Side Icon -->
+        <div class="col-lg-6 text-center mb-4 mb-lg-0">
+          <div class="feature-card-icon">
+            <i class="bi bi-graph-up-arrow"></i>
+          </div>
+        </div>
+        <!-- Right Side Content -->
+        <div class="col-lg-6 px-lg-5 text-center text-lg-start">
+          <h2 class="feature-title mb-3 text-purple">
+            Effective and efficient
+          </h2>
+          <p class="feature-desc text-sub">
+            Our courses effectively and efficiently teach reading,
+            listening, speaking, and writing skills. Personalized
+            lessons help you learn faster and stay motivated
+            throughout your language journey.
+          </p>
+        </div>
+      </div>
+
+      <!-- Feature 4 (Duolingo English Test promotion) -->
+      <div class="row align-items-center py-5 flex-lg-row-reverse">
+        <!-- Icon Side -->
+        <div class="col-lg-6 mb-4 mb-lg-0 text-center">
+          <div class="feature-card-icon"
+            style="background-color: #EBF8FF; border-color: #1CB0F6; box-shadow: 0 8px 0 #1CB0F6;">
+            <i class="bi bi-patch-check-fill text-blue"
+              style="font-size: 80px; display: block; filter: drop-shadow(0 8px 12px rgba(28,176,246,0.25));"></i>
+            <h4 class="mt-3 text-blue font-weight-black">Practice English Test</h4>
+            <p class="text-muted fs-14">Take a 5-minute adaptive placement quiz.</p>
+          </div>
+        </div>
+        <!-- Text Side -->
+        <div class="col-lg-6 px-lg-5 text-center text-lg-start">
+          <h2 class="feature-title mb-3 text-blue">
+            Certify your English skills
+          </h2>
+          <p class="feature-desc text-sub">
+            Prep for exams or benchmark your English vocabulary. Try our adaptive Practice Test and get a high-fidelity
+            printable score certificate instantly!
+          </p>
+          <a href="english-test/english-test.html" class="btn btn-duo btn-duo-blue mt-3 uppercase-bold ripple">
+            Start Practice Test
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Interactive Language Grid Section -->
+  <section class="language-grid-section py-5 border-top bg-light">
+    <div class="container text-center">
+      <h2 class="section-title mb-2">I want to learn...</h2>
+      <p class="section-subtitle text-sub mb-5">Select a language below to kickstart your journey!</p>
+
+      <div class="row row-cols-2 row-cols-md-3 row-cols-lg-6 g-4 justify-content-center">
+        <!-- Spanish -->
+        <div class="col">
+          <div class="language-card">
+            <span class="flag-icon-circle flag-es flag-lg"></span>
+            <h4 class="card-lang-name">Spanish</h4>
+            <span class="card-lang-learners">35.4M learners</span>
+          </div>
+        </div>
+        <!-- French -->
+        <div class="col">
+          <div class="language-card">
+            <span class="flag-icon-circle flag-fr flag-lg"></span>
+            <h4 class="card-lang-name">French</h4>
+            <span class="card-lang-learners">22.1M learners</span>
+          </div>
+        </div>
+        <!-- German -->
+        <div class="col">
+          <div class="language-card">
+            <span class="flag-icon-circle flag-de flag-lg"></span>
+            <h4 class="card-lang-name">German</h4>
+            <span class="card-lang-learners">11.8M learners</span>
+          </div>
+        </div>
+        <!-- Italian -->
+        <div class="col">
+          <div class="language-card">
+            <span class="flag-icon-circle flag-it flag-lg"></span>
+            <h4 class="card-lang-name">Italian</h4>
+            <span class="card-lang-learners">8.2M learners</span>
+          </div>
+        </div>
+        <!-- Japanese -->
+        <div class="col">
+          <div class="language-card">
+            <span class="flag-icon-circle flag-jp flag-lg"></span>
+            <h4 class="card-lang-name">Japanese</h4>
+            <span class="card-lang-learners">15.9M learners</span>
+          </div>
+        </div>
+        <!-- Chinese -->
+        <div class="col">
+          <div class="language-card">
+            <span class="flag-icon-circle flag-cn flag-lg"></span>
+            <h4 class="card-lang-name">Chinese</h4>
+            <span class="card-lang-learners">7.1M learners</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Bottom CTA Banner Section -->
+  <section class="bottom-cta-banner py-5 text-white">
+    <div class="container text-center py-4">
+      <div class="d-flex flex-column align-items-center justify-content-center">
+        <div class="bottom-mascot">
+          <i class="bi bi-robot"></i>
+        </div>
+        <h2 class="cta-heading mb-4 font-weight-black">Learn a language with us.</h2>
+        <button id="bottomStartBtn" class="btn btn-duo btn-duo-green btn-lg px-5 uppercase-bold py-3">
+          Get Started
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Multi-column Footer Section -->
+  <footer class="main-footer pt-5 pb-4 border-top">
+    <div class="container">
+      <div class="row gy-4 gy-md-0 mb-5">
+        <!-- Column 1 -->
+        <div class="col-6 col-md-3">
+          <h5 class="footer-title">About Us</h5>
+          <ul class="footer-links list-unstyled">
+            <li><a href="#">Courses</a></li>
+            <li><a href="#">Mission</a></li>
+            <li><a href="#">Approach</a></li>
+            <li><a href="#">Efficacy</a></li>
+            <li><a href="#">Team</a></li>
+            <li><a href="#">Careers</a></li>
+          </ul>
+        </div>
+        <!-- Column 2 -->
+        <div class="col-6 col-md-3">
+          <h5 class="footer-title">Products</h5>
+          <ul class="footer-links list-unstyled">
+            <li><a href="#">Duolingo</a></li>
+            <li><a href="#">Duolingo for Schools</a></li>
+            <li><a href="#">Duolingo English Test</a></li>
+            <li><a href="#">Duolingo ABC</a></li>
+            <li><a href="#">Duolingo Math</a></li>
+            <li><a href="#">Gift Cards</a></li>
+          </ul>
+        </div>
+        <!-- Column 3 -->
+        <div class="col-6 col-md-3">
+          <h5 class="footer-title">Terms & Privacy</h5>
+          <ul class="footer-links list-unstyled">
+            <li><a href="#">Rules</a></li>
+            <li><a href="#">Terms of Service</a></li>
+            <li><a href="#">Privacy Policy</a></li>
+            <li><a href="#">Cookie Security</a></li>
+            <li><a href="#">Preferences</a></li>
+          </ul>
+        </div>
+        <!-- Column 4 -->
+        <div class="col-6 col-md-3">
+          <h5 class="footer-title">Social</h5>
+          <ul class="footer-links list-unstyled text-sub">
+            <li><a href="#"><i class="bi bi-facebook me-2"></i>Facebook</a></li>
+            <li><a href="#"><i class="bi bi-twitter-x me-2"></i>Twitter / X</a></li>
+            <li><a href="#"><i class="bi bi-instagram me-2"></i>Instagram</a></li>
+            <li><a href="#"><i class="bi bi-tiktok me-2"></i>TikTok</a></li>
+            <li><a href="#"><i class="bi bi-youtube me-2"></i>YouTube</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <hr class="border-gray my-4">
+
+      <div class="row align-items-center justify-content-between text-center text-md-start">
+        <div class="col-md-6 mb-3 mb-md-0 text-sub fs-14">
+          @ 2026 Duolingo Clone. Made with Love for educational purposes.
+        </div>
+        <div class="col-md-6 text-md-end text-sub fs-14">
+          <span>Site Language:</span>
+          <a href="#" class="text-green text-decoration-none font-weight-bold ms-1" id="footer-lang-trigger">English <i
+              class="bi bi-caret-up-fill ms-1"></i></a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Bootstrap 5 Bundle JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- jQuery Library -->
+  <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+  <!-- Custom Modals -->
+  <script src="js/modals.js"></script>
+  <!-- Custom Script -->
+  <script src="js/main.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>Select Native Language | Duolingo</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<style>
+
+body{
+    background:#f7f7f7;
+    font-family:'Nunito', sans-serif;
+    min-height:100vh;
+}
+/*  Logo */
+
+.logo{
+    text-align:center;
+    margin-top:30px;
+    margin-bottom:20px;
+    color:#58CC02;
+    font-weight:900;
+    font-size:42px;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    gap:12px;
+}
+
+/* Globe */
+
+.world-logo{
+    width:50px;
+    height:50px;
+    border-radius:50%;
+    background:#1CB0F6;
+    position:relative;
+    overflow:hidden;
+    box-shadow:0 3px 8px rgba(0,0,0,0.12);
+}
+
+/* Continents */
+
+.world-logo::before{
+    content:"";
+    position:absolute;
+    width:22px;
+    height:22px;
+    background:#58CC02;
+    border-radius:50% 40% 50% 30%;
+    top:8px;
+    left:5px;
+    transform:rotate(-20deg);
+}
+
+.world-logo::after{
+    content:"";
+    position:absolute;
+    width:18px;
+    height:18px;
+    background:#58CC02;
+    border-radius:40% 60% 40% 60%;
+    bottom:8px;
+    right:6px;
+    transform:rotate(25deg);
+}
+
+/* Tablet */
+
+@media(max-width:768px){
+
+    .logo{
+        font-size:34px;
+    }
+
+    .world-logo{
+        width:42px;
+        height:42px;
+    }
+
+    .world-logo::before{
+        width:18px;
+        height:18px;
+    }
+
+    .world-logo::after{
+        width:14px;
+        height:14px;
+    }
+}
+
+/* Mobile */
+
+@media(max-width:576px){
+
+    .logo{
+        font-size:28px;
+        gap:8px;
+    }
+
+    .world-logo{
+        width:34px;
+        height:34px;
+    }
+
+    .world-logo::before{
+        width:14px;
+        height:14px;
+        top:6px;
+        left:4px;
+    }
+
+    .world-logo::after{
+        width:12px;
+        height:12px;
+        bottom:5px;
+        right:4px;
+    }
+}
+
+/* Main Card */
+
+.language-box{
+    background:white;
+    border-radius:20px;
+    padding:30px;
+    box-shadow:0 3px 15px rgba(0,0,0,.08);
+}
+
+.language-box h4{
+    font-weight:700;
+    color:#4b4b4b;
+}
+
+/* Language Cards */
+
+    .language-card{
+        background:white;
+        border-radius:12px;
+        padding:12px 20px;
+        margin:8px;
+        cursor:pointer;
+        display:flex;
+        align-items:center;
+        transition:transform 0.2s ease, box-shadow 0.2s ease;
+        box-shadow:0 2px 6px rgba(0,0,0,0.1);
+    }
+.language-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+}
+.language-card:active {
+    transform: scale(0.97);
+}
+.flag {
+    width:30px;
+    margin-right:10px;
+    font-size:24px;
+}
+
+/* Responsive */
+
+/* @media(max-width:768px){
+
+    .logo{
+        font-size:34px;
+    }
+
+    .globe-icon{
+        width:38px;
+        height:38px;
+    }
+
+    .language-box{
+        padding:25px;
+    }
+} */
+
+/* @media(max-width:576px){
+
+    .logo{
+        font-size:28px;
+        gap:8px;
+    }
+
+    .globe-icon{
+        width:30px;
+        height:30px;
+    }
+
+    .language-box{
+        padding:20px;
+    }
+
+    .language-item{
+        padding:12px;
+        font-size:15px;
+    }
+
+    .flag{
+        width:45px;
+        font-size:24px;
+    }
+} */
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <!-- Logo -->
+
+    <h1 class="logo">
+    <span class="world-logo"></span>
+    Duolingo
+</h1>
+
+    <!-- Language Selection Card -->
+
+    <div class="row justify-content-center">
+
+        <div class="col-lg-7 col-md-9 col-sm-12">
+
+            <div class="language-box mt-4">
+
+                <h4 class="mb-4">
+                    What language do you speak?
+                </h4>
+
+                <div class="language-grid row g-3">
+    <div class="language-card card-gradient-1"><i class="bi bi-translate emoji-icon"></i><img src="https://cdn.jsdelivr.net/npm/flag-icons/flags/4x3/in.svg" class="flag flag-animate" alt="Hindi flag">Hindi</div>
+<div class="language-card card-gradient-2"><i class="bi bi-translate emoji-icon"></i><img src="https://cdn.jsdelivr.net/npm/flag-icons/flags/4x3/us.svg" class="flag flag-animate" alt="English flag">English</div>
+<div class="language-card card-gradient-3"><i class="bi bi-translate emoji-icon"></i><img src="https://cdn.jsdelivr.net/npm/flag-icons/flags/4x3/fr.svg" class="flag flag-animate" alt="French flag">French</div>
+<div class="language-card card-gradient-1"><i class="bi bi-translate emoji-icon"></i><img src="https://cdn.jsdelivr.net/npm/flag-icons/flags/4x3/de.svg" class="flag flag-animate" alt="German flag">German</div>
+<div class="language-card card-gradient-2"><i class="bi bi-translate emoji-icon"></i><img src="https://cdn.jsdelivr.net/npm/flag-icons/flags/4x3/jp.svg" class="flag flag-animate" alt="Japanese flag">Japanese</div>
+<div class="language-card card-gradient-3"><i class="bi bi-translate emoji-icon"></i><img src="https://cdn.jsdelivr.net/npm/flag-icons/flags/4x3/kr.svg" class="flag flag-animate" alt="Korean flag">Korean</div>
+<div class="language-card card-gradient-1"><i class="bi bi-translate emoji-icon"></i><img src="https://cdn.jsdelivr.net/npm/flag-icons/flags/4x3/es.svg" class="flag flag-animate" alt="Spanish flag">Spanish</div>
+<div class="language-card card-gradient-2"><i class="bi bi-translate emoji-icon"></i><img src="https://cdn.jsdelivr.net/npm/flag-icons/flags/4x3/cn.svg" class="flag flag-animate" alt="Chinese flag">Chinese</div>
+<div class="language-card card-gradient-3"><i class="bi bi-translate emoji-icon"></i><img src="https://cdn.jsdelivr.net/npm/flag-icons/flags/4x3/ru.svg" class="flag flag-animate" alt="Russian flag">Russian</div>
+<div class="language-card card-gradient-1"><i class="bi bi-translate emoji-icon"></i><img src="https://cdn.jsdelivr.net/npm/flag-icons/flags/4x3/it.svg" class="flag flag-animate" alt="Italian flag">Italian</div>
+<div class="language-card card-gradient-2"><i class="bi bi-translate emoji-icon"></i><img src="https://cdn.jsdelivr.net/npm/flag-icons/flags/4x3/pt.svg" class="flag flag-animate" alt="Portuguese flag">Portuguese</div>
+<div class="language-card card-gradient-3"><i class="bi bi-translate emoji-icon"></i><img src="https://cdn.jsdelivr.net/npm/flag-icons/flags/4x3/tr.svg" class="flag flag-animate" alt="Turkish flag">Turkish</div>
+</div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+<script>
+
+$(document).ready(function(){
+
+    $(".language-card").click(function(){
+        localStorage.setItem(
+            "nativeLanguage",
+            $(this).text().trim()
+        );
+        window.location.href = "onboarding/goal.html";
+    });
+
+});
+
+</script>
+
+</body>
+</html>

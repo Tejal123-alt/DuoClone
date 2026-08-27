@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Profile | Duolingo</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="css/dashboard.css">
+<link rel="stylesheet" href="css/profile.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+<style>
+  .profile-avatar-wrapper {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+  }
+  .avatar-edit-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    background: rgba(0, 0, 0, 0.5);
+    color: #ffffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 13px;
+    font-weight: 800;
+    text-transform: uppercase;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+  }
+  .profile-avatar-wrapper:hover .avatar-edit-overlay {
+    opacity: 1;
+  }
+  .achievement-progress-card {
+    border: 2px solid var(--color-border);
+    border-radius: 16px;
+    padding: 16px 20px;
+    margin-bottom: 12px;
+    background: #ffffff;
+  }
+  .achievement-meta {
+    display: flex;
+    justify-content: space-between;
+    font-weight: 800;
+    margin-bottom: 6px;
+    font-size: 15px;
+  }
+  .avatar-select-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin-top: 20px;
+  }
+  .avatar-option {
+    border: 2px solid var(--color-border);
+    border-radius: 12px;
+    padding: 10px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.15s ease;
+  }
+  .avatar-option:hover {
+    border-color: var(--color-blue);
+    background-color: #F8F9FA;
+  }
+  .avatar-option.selected {
+    border-color: var(--color-green);
+    background-color: #E9F7D8;
+  }
+  .avatar-img-option {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+  }
+</style>
+</head>
+<body>
+
+<!-- Fixed Sidebar (Desktop) -->
+<nav class="sidebar">
+  <h2 class="logo">
+    <i class="bi bi-globe-americas-fill"></i>
+    Duolingo
+  </h2>
+  
+  <div class="nav flex-column">
+    <a class="nav-link" href="learn.html">
+      <i class="bi bi-house-door-fill"></i> Learn
+    </a>
+    <a class="nav-link" href="leaderboard.html">
+      <i class="bi bi-trophy-fill"></i> Leaderboard
+    </a>
+    <a class="nav-link active" href="profile.html">
+      <i class="bi bi-person-fill"></i> Profile
+    </a>
+    <a class="nav-link" href="shop.html">
+      <i class="bi bi-bag-fill"></i> Shop
+    </a>
+  </div>
+  
+  <button id="logoutBtnSidebar" class="btn btn-outline-danger w-100 logout-btn-sidebar uppercase-bold logout-btn">
+    <i class="bi bi-box-arrow-left"></i> Logout
+  </button>
+    <script src="js/logout.js"></script>
+</nav>
+
+<!-- Top Stats Header -->
+<header class="top-stats-header">
+  <div class="stat-item stat-streak">
+    <i class="bi bi-fire"></i>
+    <span id="streakCount">0</span>
+  </div>
+  <div class="stat-item stat-gems">
+    <i class="bi bi-gem"></i>
+    <span id="gemsCount">100</span>
+  </div>
+  <div class="stat-item stat-hearts">
+    <i class="bi bi-heart-fill"></i>
+    <span id="heartsCount">5</span>
+  </div>
+  <div class="stat-item stat-xp">
+    <i class="bi bi-star-fill"></i>
+    <span id="xpCount">0 XP</span>
+  </div>
+</header>
+
+<!-- Main Profile Content -->
+<main class="lesson-area-container">
+  <div class="max-w-720 mx-auto">
+    
+    <div class="profile-card mb-4 text-center">
+      
+      <!-- Interactive Avatar Wrapper -->
+      <div class="profile-avatar-wrapper mb-3" id="changeAvatarTrigger">
+        <img src="https://cdn-icons-png.flaticon.com/512/847/847969.png" class="profile-img" id="userProfileImg" alt="Profile Picture">
+        <div class="avatar-edit-overlay">Change</div>
+      </div>
+      
+      <h2 id="profileName" class="font-weight-black mb-1">User Name</h2>
+      <p id="profileEmail" class="text-sub fw-semibold mb-4">user@email.com</p>
+      
+      <div class="row g-3">
+        <div class="col-md-4">
+          <div class="stat-box">
+            <h3><i class="bi bi-fire stat-fire me-1"></i> <span id="profileStreak">0</span></h3>
+            <p class="mb-0 text-sub fw-bold">Day Streak</p>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="stat-box">
+            <h3><i class="bi bi-star-fill stat-star me-1"></i> <span id="profileXP">0</span></h3>
+            <p class="mb-0 text-sub fw-bold">Total XP</p>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="stat-box">
+            <h3><i class="bi bi-gem stat-gems me-1" style="color: var(--color-blue)"></i> <span id="profileGems">100</span></h3>
+            <p class="mb-0 text-sub fw-bold">Gems Wallet</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Achievements Header -->
+    <h3 class="font-weight-black mb-4 mt-5">Achievements</h3>
+    
+    <!-- Achievement 1: Streak Society -->
+    <div class="achievement-progress-card">
+      <div class="achievement-meta">
+        <span><i class="bi bi-fire text-orange me-2"></i> Streak Society</span>
+        <span id="streakProgressText">0 / 7 Days</span>
+      </div>
+      <p class="text-sub fs-13 mb-3 fw-bold">Maintain a 7-day learning streak on courses.</p>
+      <div class="progress" style="height: 12px;">
+        <div class="progress-bar bg-warning" id="streakProgressBar" style="width: 0%"></div>
+      </div>
+    </div>
+
+    <!-- Achievement 2: Gems Collector -->
+    <div class="achievement-progress-card">
+      <div class="achievement-meta">
+        <span><i class="bi bi-gem text-primary me-2"></i> Gems Collector</span>
+        <span id="gemsProgressText">100 / 300 Gems</span>
+      </div>
+      <p class="text-sub fs-13 mb-3 fw-bold">Accumulate 300 gems from lesson completions.</p>
+      <div class="progress" style="height: 12px;">
+        <div class="progress-bar bg-primary" id="gemsProgressBar" style="width: 33%"></div>
+      </div>
+    </div>
+
+    <!-- Achievement 3: XP Master -->
+    <div class="achievement-progress-card">
+      <div class="achievement-meta">
+        <span><i class="bi bi-star-fill text-warning me-2"></i> XP Master</span>
+        <span id="xpProgressText">0 / 500 XP</span>
+      </div>
+      <p class="text-sub fs-13 mb-3 fw-bold">Earn a cumulative score of 500 XP.</p>
+      <div class="progress" style="height: 12px;">
+        <div class="progress-bar bg-success" id="xpProgressBar" style="width: 0%"></div>
+      </div>
+    </div>
+    
+  </div>
+</main>
+
+<!-- Mobile Bottom Navigation Bar -->
+<nav class="mobile-nav d-lg-none">
+  <a class="mobile-nav-link" href="learn.html">
+    <i class="bi bi-house-door-fill"></i>
+    <span>Learn</span>
+  </a>
+  <a class="mobile-nav-link" href="leaderboard.html">
+    <i class="bi bi-trophy-fill"></i>
+    <span>Rank</span>
+  </a>
+  <a class="mobile-nav-link active" href="profile.html">
+    <i class="bi bi-person-fill"></i>
+    <span>Profile</span>
+  </a>
+  <a class="mobile-nav-link" href="shop.html">
+    <i class="bi bi-bag-fill"></i>
+    <span>Shop</span>
+  </a>
+</nav>
+
+<!-- Custom Modal for choosing avatar -->
+<div class="duo-modal-overlay" id="avatarModalOverlay" style="display: none;">
+  <div class="duo-modal-card">
+    <h3 class="duo-modal-title">Select Avatar</h3>
+    <p class="text-sub fw-semibold">Choose a cartoon mascot avatar to represent you on your profile!</p>
+    
+    <div class="avatar-select-grid">
+      <div class="avatar-option" data-img="https://cdn-icons-png.flaticon.com/512/847/847969.png">
+        <img src="https://cdn-icons-png.flaticon.com/512/847/847969.png" class="avatar-img-option" alt="Duo Owl">
+      </div>
+      <div class="avatar-option" data-img="https://cdn-icons-png.flaticon.com/512/1998/1998592.png">
+        <img src="https://cdn-icons-png.flaticon.com/512/1998/1998592.png" class="avatar-img-option" alt="Panda">
+      </div>
+      <div class="avatar-option" data-img="https://cdn-icons-png.flaticon.com/512/1998/1998621.png">
+        <img src="https://cdn-icons-png.flaticon.com/512/1998/1998621.png" class="avatar-img-option" alt="Bear">
+      </div>
+      <div class="avatar-option" data-img="https://cdn-icons-png.flaticon.com/512/1998/1998610.png">
+        <img src="https://cdn-icons-png.flaticon.com/512/1998/1998610.png" class="avatar-img-option" alt="Fox">
+      </div>
+      <div class="avatar-option" data-img="https://cdn-icons-png.flaticon.com/512/1998/1998749.png">
+        <img src="https://cdn-icons-png.flaticon.com/512/1998/1998749.png" class="avatar-img-option" alt="Koala">
+      </div>
+      <div class="avatar-option" data-img="https://cdn-icons-png.flaticon.com/512/1998/1998599.png">
+        <img src="https://cdn-icons-png.flaticon.com/512/1998/1998599.png" class="avatar-img-option" alt="Frog">
+      </div>
+    </div>
+    
+    <div class="duo-modal-actions mt-4">
+      <button class="duo-modal-btn duo-modal-btn-white" id="avatarCancelBtn">CANCEL</button>
+      <button class="duo-modal-btn duo-modal-btn-green" id="avatarSaveBtn">SAVE</button>
+    </div>
+  </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<!-- Custom Modals Engine -->
+    <script src="js/logout.js"></script>
+
+<!-- Custom script for Profile logic -->
+<script src="js/profile.js"></script>
+</body>
+</html>

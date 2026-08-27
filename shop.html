@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Shop | Duolingo</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="css/dashboard.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+<style>
+  .shop-card {
+    border: 2px solid var(--color-border);
+    border-radius: 18px;
+    padding: 24px;
+    background: #ffffff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+    transition: border-color 0.2s ease;
+  }
+  .shop-card:hover {
+    border-color: #c0c0c0;
+  }
+  .shop-item-info {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+  .shop-item-icon {
+    width: 60px;
+    height: 60px;
+    border-radius: 14px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 32px;
+    flex-shrink: 0;
+  }
+  .bg-freeze { background-color: #EBF8FF; color: var(--color-blue); }
+  .bg-double { background-color: #FFF8E5; color: var(--color-yellow); }
+  .bg-hearts { background-color: #FEE7E7; color: var(--color-red); }
+  .bg-formal { background-color: #F3EFFF; color: var(--color-purple); }
+  .bg-gold { background-color: #FFFDEB; color: #E6B400; }
+  
+  .item-title {
+    font-size: 18px;
+    font-weight: 800;
+    color: var(--color-text-main);
+    margin-bottom: 4px;
+  }
+  .item-desc {
+    font-size: 14px;
+    color: var(--color-text-sub);
+    margin-bottom: 0;
+    font-weight: 600;
+  }
+  .shop-btn {
+    min-width: 140px;
+    font-weight: 800;
+  }
+  .gem-cost {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+  }
+</style>
+</head>
+<body>
+
+<!-- Fixed Sidebar (Desktop) -->
+<nav class="sidebar">
+  <h2 class="logo">
+    <i class="bi bi-globe-americas-fill"></i>
+    Duolingo
+  </h2>
+  
+  <div class="nav flex-column">
+    <a class="nav-link" href="learn.html">
+      <i class="bi bi-house-door-fill"></i> Learn
+    </a>
+    <a class="nav-link" href="leaderboard.html">
+      <i class="bi bi-trophy-fill"></i> Leaderboard
+    </a>
+    <a class="nav-link" href="profile.html">
+      <i class="bi bi-person-fill"></i> Profile
+    </a>
+    <a class="nav-link active" href="shop.html">
+      <i class="bi bi-bag-fill"></i> Shop
+    </a>
+  </div>
+  
+  <button id="logoutBtnSidebar" class="btn btn-outline-danger w-100 logout-btn-sidebar uppercase-bold">
+    <i class="bi bi-box-arrow-left"></i> Logout
+  </button>
+</nav>
+
+<!-- Top Sticky Stats Header -->
+<header class="top-stats-header">
+  <div class="stat-item stat-streak">
+    <i class="bi bi-fire"></i>
+    <span id="streakCount">0</span>
+  </div>
+  <div class="stat-item stat-gems active">
+    <i class="bi bi-gem"></i>
+    <span id="gemsCount">100</span>
+  </div>
+  <div class="stat-item stat-hearts">
+    <i class="bi bi-heart-fill"></i>
+    <span id="heartsCount">5</span>
+  </div>
+  <div class="stat-item stat-xp">
+    <i class="bi bi-star-fill"></i>
+    <span id="xpCount">0 XP</span>
+  </div>
+</header>
+
+<!-- Main shop content -->
+<main class="lesson-area-container">
+  <div class="max-w-720 mx-auto">
+    
+    <div class="d-flex justify-content-between align-items-center mb-4">
+      <h1 class="font-weight-black">Gems Shop</h1>
+      <div class="badge bg-primary fs-6 p-2 rounded-3 gem-cost">
+        <i class="bi bi-gem"></i> <span id="gemsWallet">100</span> Gems
+      </div>
+    </div>
+    
+    <p class="text-sub fw-semibold mb-5">Spend your hard-earned Gems on accessories, outfits, and power-ups for Duo!</p>
+    
+    <!-- Item List -->
+    
+    <!-- Item 1: Streak Freeze -->
+    <div class="shop-card">
+      <div class="shop-item-info">
+        <div class="shop-item-icon bg-freeze">
+          <i class="bi bi-snow2"></i>
+        </div>
+        <div>
+          <h4 class="item-title">Streak Freeze</h4>
+          <p class="item-desc">Allows your streak to remain active if you miss a day of practice.</p>
+        </div>
+      </div>
+      <button class="btn btn-success btn-duo btn-duo-green shop-btn" id="btn-freeze" data-cost="100">
+        <span class="gem-cost"><i class="bi bi-gem"></i> 100</span>
+      </button>
+    </div>
+
+    <!-- Item 2: Double or Nothing -->
+    <div class="shop-card">
+      <div class="shop-item-info">
+        <div class="shop-item-icon bg-double">
+          <i class="bi bi-lightning-charge-fill"></i>
+        </div>
+        <div>
+          <h4 class="item-title">Double or Nothing</h4>
+          <p class="item-desc">Double your 50 Gem wager if you maintain a 7-day learning streak!</p>
+        </div>
+      </div>
+      <button class="btn btn-success btn-duo btn-duo-green shop-btn" id="btn-double" data-cost="50">
+        <span class="gem-cost"><i class="bi bi-gem"></i> 50</span>
+      </button>
+    </div>
+
+    <!-- Item 3: Hearts Refill -->
+    <div class="shop-card">
+      <div class="shop-item-info">
+        <div class="shop-item-icon bg-hearts">
+          <i class="bi bi-heart-pulse-fill"></i>
+        </div>
+        <div>
+          <h4 class="item-title">Refill Hearts</h4>
+          <p class="item-desc">Get back to full strength with 5 fresh hearts to continue learning.</p>
+        </div>
+      </div>
+      <button class="btn btn-success btn-duo btn-duo-green shop-btn" id="btn-refill" data-cost="150">
+        <span class="gem-cost"><i class="bi bi-gem"></i> 150</span>
+      </button>
+    </div>
+
+    <!-- Item 4: Outfit - Formal tuxedo -->
+    <div class="shop-card">
+      <div class="shop-item-info">
+        <div class="shop-item-icon bg-formal">
+          <i class="bi bi-person-fill-check"></i>
+        </div>
+        <div>
+          <h4 class="item-title">Formal Wear Duo</h4>
+          <p class="item-desc">Dress Duo the Owl in a classy, sharp tuxedo in lessons!</p>
+        </div>
+      </div>
+      <button class="btn btn-success btn-duo btn-duo-green shop-btn outfit-btn" id="btn-outfit-formal" data-cost="250" data-outfit="formal">
+        <span class="gem-cost"><i class="bi bi-gem"></i> 250</span>
+      </button>
+    </div>
+
+    <!-- Item 5: Outfit - Gold statue -->
+    <div class="shop-card">
+      <div class="shop-item-info">
+        <div class="shop-item-icon bg-gold">
+          <i class="bi bi-award-fill"></i>
+        </div>
+        <div>
+          <h4 class="item-title">Golden Mascot Duo</h4>
+          <p class="item-desc">Turn Duo the Owl into a solid, shiny golden trophy statue!</p>
+        </div>
+      </div>
+      <button class="btn btn-success btn-duo btn-duo-green shop-btn outfit-btn" id="btn-outfit-gold" data-cost="400" data-outfit="gold">
+        <span class="gem-cost"><i class="bi bi-gem"></i> 400</span>
+      </button>
+    </div>
+
+  </div>
+</main>
+
+<!-- Mobile Bottom Navigation Bar -->
+<nav class="mobile-nav d-lg-none">
+  <a class="mobile-nav-link" href="learn.html">
+    <i class="bi bi-house-door-fill"></i>
+    <span>Learn</span>
+  </a>
+  <a class="mobile-nav-link" href="leaderboard.html">
+    <i class="bi bi-trophy-fill"></i>
+    <span>Rank</span>
+  </a>
+  <a class="mobile-nav-link" href="profile.html">
+    <i class="bi bi-person-fill"></i>
+    <span>Profile</span>
+  </a>
+  <a class="mobile-nav-link active" href="shop.html">
+    <i class="bi bi-bag-fill"></i>
+    <span>Shop</span>
+  </a>
+</nav>
+
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<!-- Custom Modals Engine -->
+<script src="js/modals.js"></script>
+<script src="js/shop.js"></script>
+<script src="js/logout.js"></script>
+
+    
+    
+</script>
+</body>
+</html>
